@@ -22,7 +22,7 @@ self.addEventListener("fetch",e=>{
 		let r=await f;
 		if(![0,200].includes(r.status))return;
 		let l=r.url&&new URL(r.url);
-		if(l&&l.pathname.replaceAll(/[^\/?]+/g,'').length>1&&l.host=="tuwdl.netlify.app")return;
+		if(l&&l.pathname.replaceAll(/[^\/?]+/g,'').length>1&&l.host.includes("tuwdl.netlify.app"))return;
 		let k=r.clone(),
 			c=await caches.open(v);
 		c.put(e.request,k);
