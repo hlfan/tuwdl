@@ -68,10 +68,14 @@ section>a{
 	border:#0000 solid 0;
 	margin-top:.5ch;
 	border-radius:1em/50%;
-	box-shadow:inset 0 0 1em #0003}
+	box-shadow:inset 0 0 1em #0005}
 a[class]{
 	padding:.4ch 1ch;
-	transition:font.2s cubic-bezier(.8,0,0,1),visibility.2s}
+	transition:font.2s cubic-bezier(.8,0,0,1),visibility.2s,filter.2s,padding.2s}
+section>a:hover{box-shadow:none}
+a.done{
+	filter:brightness(.8)grayscale(1);
+	padding:.2ch 1ch}
 section>a>span{margin:0 .3ch}
 a[class] :is(.time,.lva):after{content:':'}
 .lva{flex:1}
