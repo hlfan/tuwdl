@@ -1,4 +1,4 @@
-const v="v1.6";
+const v="v2";
 self.addEventListener("install",e=>{
 	e.waitUntil(caches.open(v).then(c=>
 		c.addAll(["index.html","app.js","app.css","manifest.json"]
@@ -18,11 +18,14 @@ self.addEventListener("fetch",e=>{
 		u(e,f);
 		return ch||f
 	},
-	u=async(e,f)=>{f.then(r=>{
+	u=async(e,f)=>{
+		let r=await f;
 		if(![0,200].includes(r.status))return;
-		let k=r.clone();
-		caches.open(v).then(c=>c.put(e.request,k));
-	})};
+		if(r.type==='opaqueredirect')return;
+		let k=r.clone(),
+			c=await caches.open(v);
+		c.put(e.request,k);
+	};
 	e.respondWith(d(e))
 }),
 self.addEventListener("activate",e=>{
