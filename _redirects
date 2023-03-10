@@ -1,8 +1,24 @@
 /go/*		https://rebrand.ly/:splat
 
-/s/*		/tiss/courseRegistration/:splat
-/x/*		/tiss/examDateList/:splat
-/g/*		/tiss/groupList/:splat
 
-/tiss/:path/:lva/:sem		/tiss/:path?courseNr=:lva&semester=:sem
+/q/*			/el/quiz/:splat
+/a/*			/el/assign/:splat
+/r/*			/el/resource/:splat
+/c/*			/el/course/:splat
+
+/el/:path/:lva/:sem	/el/:path?idnumber=:lva-:sem
+/el/:path/:id		/el/:path?id=:id
+
+/el/course/*		/tuwel/course/:splat
+/el/*			/tuwel/mod/:splat
+
+/tuwel/*		https://tuwel.tuwien.ac.at/:splat/view.php
+
+
+/s/*			/tiss/courseRegistration/:splat
+/x/*			/tiss/examDateList/:splat
+/g/*			/tiss/groupList/:splat
+
+/tiss/:path/:lva/:sem	/tiss/:path?courseNr=:lva&semester=:sem
+
 /tiss/:path		https://tiss.tuwien.ac.at/education/course/:path.xhtml
