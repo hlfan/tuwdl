@@ -1,0 +1,117 @@
+let $=(s,i=document)=>i.querySelector(s),
+	a2o=(a,s,r)=>$(s,r).append(a),
+	d=(...l)=>new Date(...l),
+	j=()=>new Date(),
+	o=(l,e,a)=>l.addEventListener(e,a),
+	cd=n=>!n||d(...n.v.slice(5,-1).split(',')),
+	fmt=$('section a'),rush=!1,hcl='',uth=[],
+	texts=$('html').lang==='de'?' Tagen,einem Tag ,Zur Tabelle,Filter merken,Filter zurücksetzen':' days,a day ,to the table,save filter,restore filter',
+	toggl=document.createDocumentFragment(),
+	sfy="FullYear,Month,Date".split(',').map(v=>'get'+v),
+	svo=$('style').textContent,
+	filters=JSON.parse(localStorage.filters||'{}');
+texts=texts.split(',');
+$('aside a').href=$('script[src*="gviz"]').src.split('gviz')[0]+'edit';
+$('aside a').textContent=texts[2];
+$('aside label').title=texts[3];
+$('aside span').title=texts[4];
+toggl.append($('input'));
+toggl.append($('label'));
+fmt.remove();
+$('#save').checked=JSON.stringify(filters)!='{}';
+fd=[
+	['Sans','Mono'],
+	[{n:'Regular'},{n:'Bold',i:700}],
+	[{n:'woff2'},{n:'woff'},{n:'ttf',long:"'truetype'"}],
+	'//www.redditstatic.com/mona-lisa/assets/fonts/Reddit'];
+fd[1]=fd[0].map((width)=>
+	fd[1].map((weight)=>
+		({width,weight})
+	)
+).flat();
+fd[1]=fd[1].map((font)=>
+	`@font-face{font-family:"Reddit ${font.width}";src:${
+		fd[2].map((format)=>
+			`url("${fd[3]+font.width}-${font.weight.n}.${format.n}") format(${format.long||`"${format.n}"`})`
+		).join(`,`)+(font.weight.i?`;font-weight:`+font.weight.i:'')
+	};}`
+).join('');
+o($('#save'),'change',saveFilter);
+o($('aside span'),'click',()=>{delete localStorage.filters});
+s=navigator.serviceWorker;if(s)s.register('sw.js');
+
+if(JSON.stringify(resp)=='{}'){
+	google.visualization.Query.setResponse=q=>{resp=q;init(q)}
+}else{
+	init(resp)};
+
+function f(timestamp){
+	let time=timestamp-j(),
+		count=d(time).toJSON().slice(11,-5),
+		days=time/27e5>>5;
+	if(time<0)setTimeout(()=>init(resp));
+	rush|=days<2;
+	count=days>1?days+texts[0]:days>0?texts[1]+count:count;
+	return'in '+count
+}
+function saveFilter(){
+	if(!$('#save').checked)return;
+	inputs.forEach(l=>filters[l.id]=l.checked);
+	localStorage.filters=JSON.stringify(filters)
+}
+function update(){
+	rush=!1;
+	for(let i in list){
+		ntxt=f(list[i].d);
+		el=$('.days',[...$('section').children][i]);
+		if(el.innerText!=ntxt)el.innerText=ntxt;
+	}
+	let delay=1e3-j()%1e3;
+	if(!rush){
+		delay=list.map(l=>d(l.d).setFullYear(...sfy.map(v=>j()[v]())));
+		delay=delay.map(n=>n>j()?n:d(n).setDate(d(n).getDate()+1));
+		delay=d([...new Set([...delay,...list.map(l=>l.e)])].sort()[0]);
+		delay-=j();
+	}
+	let i=(Math.round(performance.now()%1e3*1e3)/1e6).toString().slice(2);
+	uth[i]=1+uth[i]||1;
+	setTimeout(()=>update(),delay);
+}
+function init(q){
+	list=q.table.rows;
+	list.forEach(l=>(l.d=cd(l.c[0]),l.e=cd(l.c[1])));
+	list=list.filter(l=>Math.max(l.d,l.e)>j());
+	lvas=[...new Set(list.map(l=>l.c[6].v))].sort().reverse();
+	$('section').innerHTML="";
+	for(let l of list){
+		dl=fmt.cloneNode(!0);
+		zt=l.c[0].f.replace('. ',' ').split(' ');
+		a2o(zt[0],'.day',dl);
+		a2o(zt[1],'.date',dl);
+		a2o(zt[2],'.time',dl);
+		a2o(l.c[6].v,'.lva',dl);
+		a2o(l.c[2].v,'.name',dl);
+		dl.href=l.c[12].v.replace(/(?:https?:)?\/\/rebrand\.ly/,'go');
+		a2o(f(l.d),'.days',dl);
+		dl.classList.add(l.c[6].v);
+		if(l.c[5].v=='TRUE')dl.classList.add('pruefung');
+		if(l.e>j())dl.classList.add('soon');
+		dl.title=((l.c[14]?.v||'')+' '+(l.c[7]?.v||'')).trim();
+		$('section').append(dl);
+	}
+	[...$('main').children].filter(l=>l.hasAttributes()).forEach(l=>{l.remove()});
+	for(let l of lvas){
+		lb=toggl.cloneNode(!0);
+		lb.firstChild.id=l;
+		lb.lastChild.htmlFor=l;
+		lb.firstChild.ariaLabel=l;
+		hcl+=`#${l}:checked~section .${l},`;
+		o(lb.firstChild,'change',saveFilter);
+		$('main').prepend(lb);
+	}
+	$('style').textContent=hcl+svo+fd[1];
+	inputs=[...$('main').children].filter(l=>l.id);
+	if(JSON.stringify(filters)!='{}'){
+		inputs.forEach(l=>(filters[l.id]+1)?l.checked=filters[l.id]:l)}
+	update();
+}

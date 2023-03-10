@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta htp-equiv="Content-Security-Policy" content="default-src 'self'; font-src www.redditstatic.com; img-src 'self' storage.googleapis.com; script-src 'self' 'sha256-/PNS3s805FY3N6NsM06USXuVrLt0jwWUk2ST08L7Rjg=' docs.google.com; style-src 'unsafe-inline' 'self'; base-uri 'self'"/>
+		<script>let resp={},google={visualization:{Query:{setResponse:function(o){resp=o}}}}</script>
+		<script async src="//docs.google.com/spreadsheets/d/12RD5qPY6V43ckQNpV55tiqCE30QLbh4KBonX5B1R0VA/gviz/tq?tqx=out:json&gid=0"></script>
+		<script async src="app.js"></script>
+		<link rel="stylesheet" type="text/css" href="app.css"/>
+		<title>Deadline-Watcher</title>
+		<meta name="description" content="Zählt Deadlines auf"/>
+		<meta name="viewport" content="width=device-width"/>
+		<link rel="manifest" href="manifest.json">
+		<meta name="theme-color" content="#144">
+		<link rel="apple-touch-icon" href="192.png">
+		<style>s{visibility:hidden;font-size:0}</style>
+	</head>
+	<body>
+		<main>
+			<input type="checkbox"/>
+			<label></label>
+			<div></div>
+			<div></div>
+			<section>
+				<a target="_blank"><span class="day"></span> <span class="date"></span> <span class="time"></span> <span class="lva"></span> <span class="name"></span> <span class="days"></span></a>
+			</section>
+			<div></div>
+		</main>
+		<aside>
+			<input type="checkbox" id="save"/>
+			<label for="save"></label>
+			<a target="_blank"></a>
+			<span tabindex="0"></span>
+		</aside>
+	</body>
+</html>

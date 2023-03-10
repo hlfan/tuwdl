@@ -1,0 +1,145 @@
+html{
+	color-scheme:dark;
+	overflow:overlay;
+	scrollbar-color:#888 #0000;
+	scrollbar-gutter:stable;
+	width:100vw}
+::-webkit-scrollbar-thumb{
+	background:#888;
+	border-radius:9vh 0 0 9vh}
+::-webkit-scrollbar{max-width:.4ch}
+body{
+	--c:#144;
+	--r:#721;
+	background:#111;
+	font-family:'Reddit Sans',sans-serif;
+	font-size:calc((2em + 2vmin + 2vmax)/3);
+	font-variant-numeric:tabular-nums;
+	margin:0;
+	overflow-x:clip}
+main{
+	align-content:start;
+	overflow:hidden auto;
+	padding:1vh 4vw clamp(2em,22vh - 30vmin,6em)}
+main,section>a,aside{
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:space-evenly}
+input{
+	height:0;
+	margin:0;
+	opacity:0;
+	position:absolute;
+	width:0}
+input:focus+label{outline:auto}
+label{
+	background:#777;
+	box-shadow:0 0 1ch #7774;
+	cursor:pointer;
+	margin:.3ch;
+	padding:.2ch.2ch.2ch 1.2ch;
+	z-index:1}
+main label,.day,.lva{font-family:'Reddit Mono',monospace}
+:is(main input:checked,#save:not(:checked))+label,a.pruefung{
+	--c:var(--r);
+	padding:.2ch 1.2ch.2ch.2ch}
+a.soon{background-image:linear-gradient(#0008,#0008)}
+label,label:before{
+	border:1px solid #0000;
+	border-radius:9em;
+	transition:padding .2s, background .2s, box-shadow .2s}
+label,a,aside span{color:#ddd}
+label:before{
+	box-shadow:0 0 .5ch var(--c),inset 0 0 .4ch #0002;
+	content:attr(for);
+	padding:0 .5ch}
+label:before,section>a{background:var(--c)}
+div{flex-basis:100%}
+div+div,section+div{flex:1 0 1px}
+section{
+	filter:drop-shadow(0 0 1em #000);
+	flex-grow:1;
+	-webkit-hyphens:auto;
+	hyphens:auto}
+a{text-decoration:auto}
+section>a{
+	align-items:baseline;
+	background-clip:padding-box;
+	border:#0000 solid 0;
+	margin-top:.5ch;
+	border-radius:1em/50%;
+	box-shadow:inset 0 0 1em #0003}
+a[class]{
+	padding:.4ch 1ch;
+	transition:font.2s cubic-bezier(.8,0,0,1),visibility.2s}
+section>a>span{margin:0 .3ch}
+a[class] :is(.time,.lva):after{content:':'}
+.lva{flex:1}
+.name,.days{flex:99 1 max-content}
+.days{text-align:end}
+aside{
+	align-items:flex-end;
+	flex-direction:row-reverse;
+	inset:auto 0 0;
+	position:fixed;
+	text-align:center}
+#save+label,aside a{
+	flex:2;
+	max-width:max-content}
+#save+label:before{
+	content:attr(title);
+	display:block;
+	padding:0 1ch}
+aside a{
+	background:#0f9d58 no-repeat url(//storage.googleapis.com/support-kms-prod/aRSQ2Mibb89nMCYxX8jT1PbX707VHrlX5Snt);
+	background-size:contain;
+	border-radius:0 2ch 0 0;
+	margin-right:auto;
+	padding:1ch 1ch 1ch 4ch;
+	text-align:end}
+aside span{
+	background:var(--r);
+	font-size:0;
+	transition:font .5s,margin .5s;
+	width:100vw}
+#save:not(:checked)~span{
+	font-size:100%;
+	margin-bottom:-100%;
+	transition-delay:0s,5s}
+aside span:before{content:attr(title)}
+@media(prefers-reduced-motion:reduce){
+	html:root *,:root :before{
+		transition-duration:0s}}
+@media(prefers-reduced-data:reduce){
+	body{font-family:monospace}
+	.date,.time,.name,aside{
+		font-family:sans-serif}
+	aside a{
+		background-image:none;
+		padding:1ch}}
+@media(prefers-color-scheme:light){
+	body{
+		--c:#0f0;
+		--r:#f00;
+		background:#fff}
+	label{background:#ccc}
+	label,a,aside span{
+		color:#000}
+	section{filter:none}}
+@media print{
+	html:root *,:root :before{
+		background:unset;
+		border-color:#000;
+		box-shadow:none;
+		filter:none;
+		position:relative}
+	:root{color-scheme:light}
+	main{padding:1vh 4vw}
+	label,a,aside span{
+		color:unset}
+	a[href]:after{
+		content:'('attr(href)')';
+		flex-basis:100%;
+		line-break:anywhere;
+		margin-left:.5ch}
+	aside span{display:none}}

@@ -1,0 +1,28 @@
+{
+	"background_color": "#111",
+	"display": "standalone",
+	"icons": [{
+			"sizes": "512x512",
+			"src": "app.svg",
+			"type": "image/svg+xml"
+		}, {
+			"purpose": "maskable",
+			"sizes": "512x512",
+			"src": "app.svg",
+			"type": "image/svg+xml"
+		}, {
+			"sizes": "192x192",
+			"src": "192.png",
+			"type": "image/png"
+		}, {
+			"sizes": "512x512",
+			"src": "512.png",
+			"type": "image/png"
+		}
+	],
+	"name": "Deadlines-Watcher",
+	"scope": "/",
+	"short_name": "Deadlines",
+	"start_url": "/",
+	"theme_color": "#144"
+}
