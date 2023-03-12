@@ -31,4 +31,4 @@
 /iss/*			/tiss/education/course/:splat
 
 # redirect to TISS
-/tiss/:path		https://tiss.tuwien.ac.at/:path.xhtml
+/tiss/*		https://tiss.tuwien.ac.at/:splat.xhtml
