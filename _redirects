@@ -1,24 +1,34 @@
-/go/*		https://rebrand.ly/:splat
-
-
+# uses shorthands  a c d g q r s x
+# shorthand to tuwEL
 /q/*			/el/quiz/:splat
 /a/*			/el/assign/:splat
 /r/*			/el/resource/:splat
 /c/*			/el/course/:splat
 
+# parse path for tuwEL
 /el/:path/:lva/:sem	/el/:path?idnumber=:lva-:sem
 /el/:path/:id		/el/:path?id=:id
 
+# specify correct subpath
 /el/course/*		/tuwel/course/:splat
 /el/*			/tuwel/mod/:splat
 
+# redirect to TUWEL
 /tuwel/*		https://tuwel.tuwien.ac.at/:splat/view.php
 
 
-/s/*			/tiss/courseRegistration/:splat
-/x/*			/tiss/examDateList/:splat
-/g/*			/tiss/groupList/:splat
+# shorthand to tISS
+/s/*			/iss/courseRegistration/:splat
+/x/*			/iss/examDateList/:splat
+/g/*			/iss/groupList/:splat
+/d/*			/iss/educationDetails/:splat
 
-/tiss/:path/:lva/:sem	/tiss/:path?courseNr=:lva&semester=:sem
+# parse path for tISS
+/iss/:path/:lva/:sem	/iss/:path?courseNr=:lva&semester=:sem
 
-/tiss/:path		https://tiss.tuwien.ac.at/education/course/:path.xhtml
+# specify correct subpath
+/iss/educationDetails/*	/tiss/course/educationDetails/:splat
+/iss/*			/tiss/education/course/:splat
+
+# redirect to TISS
+/tiss/:path		https://tiss.tuwien.ac.at/:path.xhtml
