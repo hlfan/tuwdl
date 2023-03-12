@@ -17,18 +17,15 @@
 /tuwel/*		https://tuwel.tuwien.ac.at/:splat/view.php
 
 
-# shorthand to tISS
-/s/*			/iss/courseRegistration/:splat
-/x/*			/iss/examDateList/:splat
-/g/*			/iss/groupList/:splat
-/d/*			/iss/educationDetails/:splat
+# shorthand to TISS
+/s/*			/tiss/courseRegistration/:splat
+/x/*			/tiss/examDateList/:splat
+/g/*			/tiss/groupList/:splat
+/d/*			/tiss/educationDetails/:splat
 
-# parse path for tISS
-/iss/:path/:lva/:sem	/iss/:path?courseNr=:lva&semester=:sem
-
-# specify correct subpath
-/iss/educationDetails/*	/tiss/course/educationDetails/:splat
-/iss/*			/tiss/education/course/:splat
+# parse path for TISS
+/tiss/:path/:lva/:sem	/tiss/:path?courseNr=:lva&semester=:sem
 
 # redirect to TISS
-/tiss/*		https://tiss.tuwien.ac.at/:splat.xhtml
+/tiss/educationDetails	https://tiss.tuwien.ac.at/course/educationDetails.xhtml
+/tiss/:path		https://tiss.tuwien.ac.at/education/course/:path.xhtml
