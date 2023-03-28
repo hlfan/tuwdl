@@ -63,27 +63,25 @@ section{
 	-webkit-hyphens:auto;
 	hyphens:auto}
 a{text-decoration:auto}
-section a{align-items:baseline}
+section a{
+	align-items:baseline;
+	margin-right:1ch}
 article{
 	display:grid;
-	margin-top:.5ch}
+	margin-top:.5ch
+	transition:font.2s cubic-bezier(.8,0,0,1),margin.2s,visibility.2s}
 article[class] a{
 	padding:.4ch 1ch;
-	transition:font.2s cubic-bezier(.8,0,0,1),visibility.2s,filter.2s,padding.2s}
+	transition:margin.2s,filter.2s}
 section a:hover{box-shadow:none}
-article input:checked+label{
-	filter:brightness(.8)grayscale(1);
-	padding-left:1ch;
-	padding-right:0}
-article label{
-	display:block;
-	padding-right:1ch;
-	transition:padding .2s}
 article label,article a{
 	border-radius:1em/50%;
 	box-shadow:inset 0 0 1em #0004;
 	outline:#0000 solid 1px}
-article input:checked+label a{padding:.2ch 1ch}
+article input:checked+label a{
+	filter:brightness(.8)grayscale(1);
+	margin-right:0;
+	margin-left:1ch}
 section a span{margin:0 .3ch}
 a[class] :is(.time,.lva):after{content:':'}
 .lva{flex:1}
