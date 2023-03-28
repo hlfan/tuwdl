@@ -66,7 +66,7 @@ function update(){
 		el=$('.days',[...$('section').children][i]);
 		if(el.innerText!=ntxt)el.innerText=ntxt;
 	}
-	let delay=1e3-j()%1e3;
+	let delay=1005-j()%1e3;
 	if(!rush){
 		delay=list.map(l=>d(l.d).setFullYear(...sfy.map(v=>j()[v]())));
 		delay=delay.map(n=>n>j()?n:d(n).setDate(d(n).getDate()+1));
