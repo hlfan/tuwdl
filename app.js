@@ -66,7 +66,7 @@ function hashDL(row){
 	binS+=('0'.repeat(20)+(row[3].v*1).toString(2)).slice(-19);
 	binS+=((row[11].v.slice(0,4)-2020)*2+['S','W'].indexOf(term)).toString(2);
 	binS+=[...row[2].v.toLowerCase().replaceAll(/\b\W+?\b/g,' ')].map(l=>hobj[l]).join('');
-	let p=(binS+'0'.repeat(6)).slice(0,-binS.length%6);
+	let p=(binS+'0'.repeat(6)).slice(0,-binS.length%6||9**9);
 	for(let i=0;i<p.length;i+=6)
 		blocks.push(p.slice(i,i+6))
 	return blocks.map(l=>bobj[l]).join('');
