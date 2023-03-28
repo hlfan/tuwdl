@@ -68,7 +68,7 @@ section a{
 	margin-right:1ch}
 article{
 	display:grid;
-	margin-top:.5ch
+	margin-top:.5ch;
 	transition:font.2s cubic-bezier(.8,0,0,1),margin.2s,visibility.2s}
 article[class] a{
 	padding:.4ch 1ch;
