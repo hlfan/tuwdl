@@ -103,14 +103,16 @@ function init(q){
 	for(let l of list){
 		dl=fmt.cloneNode(!0);
 		zt=l.c[0].f.replace('. ',' ').split(' ');
+		hash=hashDL(l.c);
 		a2o(zt[0],'.day',dl);
 		a2o(zt[1],'.date',dl);
 		a2o(zt[2],'.time',dl);
 		a2o(l.c[6].v,'.lva',dl);
 		a2o(l.c[2].v,'.name',dl);
-		dl.href=l.c[12].v.replace(/(?:https?:)?\/\/rebrand\.ly/,'go');
+		$('a',dl).href=l.c[12].v.replace(/(?:https?:)?\/\/rebrand\.ly/,'go');
 		a2o(f(l.d),'.days',dl);
-		dl.dataset.hash=hashDL(l.c);
+		$('input',dl).id=hash;
+		$('label',dl).htmlFor=hash;
 		dl.classList.add(l.c[6].v);
 		if(l.c[5].v=='TRUE')dl.classList.add('pruefung');
 		if(l.e>j())dl.classList.add('soon');
