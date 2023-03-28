@@ -12,8 +12,8 @@ let $=(s,i=document)=>i.querySelector(s),
 	hchars='0123456789bcdfghjklmnpqrstvwxyz ',
 	bchars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
 	iarr=i=>(c=i.length.toString(2).length-1,Object.entries(i).map(l=>[l[1],('0'.repeat(c)+(l[0]>>0).toString(2)).slice(-c)])),
-	hobj=Object.fromEntries(iobj(hchars)),
-	bobj=Object.fromEntries(iobj(bchars).map(l=>l.reverse())),
+	hobj=Object.fromEntries(iarr(hchars)),
+	bobj=Object.fromEntries(iarr(bchars).map(l=>l.reverse())),
 	filters=JSON.parse(localStorage.filters||'{}');
 texts=texts.split(',');
 $('aside a').href=$('script[src*="gviz"]').src.split('gviz')[0]+'edit';
