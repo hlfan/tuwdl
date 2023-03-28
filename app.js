@@ -9,6 +9,11 @@ let $=(s,i=document)=>i.querySelector(s),
 	toggl=document.createDocumentFragment(),
 	sfy="FullYear,Month,Date".split(',').map(v=>'get'+v),
 	svo=$('style').textContent,
+	hchars='0123456789bcdfghjklmnpqrstvwxyz ',
+	bchars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
+	iarr=i=>(c=i.length.toString(2).length-1,Object.entries(i).map(l=>[l[1],('0'.repeat(c)+(l[0]>>0).toString(2)).slice(-c)])),
+	hobj=Object.fromEntries(iobj(hchars)),
+	bobj=Object.fromEntries(iobj(bchars).map(l=>l.reverse())),
 	filters=JSON.parse(localStorage.filters||'{}');
 texts=texts.split(',');
 $('aside a').href=$('script[src*="gviz"]').src.split('gviz')[0]+'edit';
@@ -54,6 +59,18 @@ function f(timestamp){
 	count=days>1?days+texts[0]:days>0?texts[1]+count:count;
 	return'in '+count
 }
+function hashDL(row){
+	let binS='',blocks=[],
+		term=row[11].v.slice(4);
+	binS+=(row[5].v=='TRUE')*1;
+	binS+=('0'.repeat(20)+(row[3].v*1).toString(2)).slice(-19);
+	binS+=((row[11].v.slice(0,4)-2023)*2+term=='S'?0:term=='W'?1:-1).toString(2);
+	binS+=[...row[2].v.toLowerCase().replaceAll(/\b\W+?\b/g,' ')].map(l=>hobj[l]).join('');
+	let p=(binS+'0'.repeat(6)).slice(0,-binS.length%6);
+	for(let i=0;i<p.length;i+=6)
+		blocks.push(p.slice(i,i+6))
+	return p.map(l=>bobj[l]).join('');
+}
 function saveFilter(){
 	if(!$('#save').checked)return;
 	inputs.forEach(l=>filters[l.id]=l.checked);
@@ -93,6 +110,7 @@ function init(q){
 		a2o(l.c[2].v,'.name',dl);
 		dl.href=l.c[12].v.replace(/(?:https?:)?\/\/rebrand\.ly/,'go');
 		a2o(f(l.d),'.days',dl);
+		dl.dataset.hash=hashDL(l.c);
 		dl.classList.add(l.c[6].v);
 		if(l.c[5].v=='TRUE')dl.classList.add('pruefung');
 		if(l.e>j())dl.classList.add('soon');
