@@ -32,7 +32,8 @@ input{
 	position:absolute;
 	width:0}
 input:focus+label{outline:auto}
-main>label,#save+label{
+label{background:#777}
+body>*>label{
 	background:#777;
 	box-shadow:0 0 1ch #7774;
 	cursor:pointer;
@@ -40,7 +41,7 @@ main>label,#save+label{
 	padding:.2ch.2ch.2ch 1.2ch;
 	z-index:1}
 main>label,.day,.lva{font-family:'Reddit Mono',monospace}
-:is(main input:checked,#save:not(:checked))+label,.pruefung a{
+:is(main>input:checked,#save:not(:checked))+label,.pruefung a{
 	--c:var(--r);
 	padding:.2ch 1.2ch.2ch.2ch}
 .soon a{background-image:linear-gradient(#0008,#0008)}
@@ -62,20 +63,27 @@ section{
 	-webkit-hyphens:auto;
 	hyphens:auto}
 a{text-decoration:auto}
-section a{
-	align-items:baseline;
-	background-clip:padding-box;
-	border:#0000 solid 0;
-	margin-top:.5ch;
-	border-radius:1em/50%;
-	box-shadow:inset 0 0 1em #0005}
+section a{align-items:baseline}
+article{
+	display:grid;
+	margin-top:.5ch}
 article[class] a{
 	padding:.4ch 1ch;
 	transition:font.2s cubic-bezier(.8,0,0,1),visibility.2s,filter.2s,padding.2s}
 section a:hover{box-shadow:none}
-a.done{
+article input:checked+label{
 	filter:brightness(.8)grayscale(1);
-	padding:.2ch 1ch}
+	padding-left:1ch;
+	padding-right:0}
+article label{
+	display:block;
+	padding-right:1ch;
+	transition:padding .2s}
+article label,article a{
+	border-radius:1em/50%;
+	box-shadow:inset 0 0 1em #0004;
+	outline:#0000 solid 1px}
+article input:checked+label a{padding:.2ch 1ch}
 section a span{margin:0 .3ch}
 a[class] :is(.time,.lva):after{content:':'}
 .lva{flex:1}
@@ -136,6 +144,7 @@ aside span:before{content:attr(title)}
 		border-color:#000;
 		box-shadow:none;
 		filter:none;
+		outline-color:#000;
 		position:relative}
 	:root{color-scheme:light}
 	main{padding:1vh 4vw}
