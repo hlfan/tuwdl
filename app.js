@@ -69,7 +69,7 @@ function hashDL(row){
 	let p=(binS+'0'.repeat(6)).slice(0,-binS.length%6);
 	for(let i=0;i<p.length;i+=6)
 		blocks.push(p.slice(i,i+6))
-	return p.map(l=>bobj[l]).join('');
+	return blocks.map(l=>bobj[l]).join('');
 }
 function saveFilter(){
 	if(!$('#save').checked)return;
