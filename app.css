@@ -21,7 +21,7 @@ main{
 	align-content:start;
 	overflow:hidden auto;
 	padding:1vh 4vw clamp(2em,22vh - 30vmin,6em)}
-main,section>a,aside{
+main,section a,aside{
 	display:flex;
 	flex-wrap:wrap;
 	justify-content:space-evenly}
@@ -32,28 +32,28 @@ input{
 	position:absolute;
 	width:0}
 input:focus+label{outline:auto}
-label{
+main>label,#save+label{
 	background:#777;
 	box-shadow:0 0 1ch #7774;
 	cursor:pointer;
 	margin:.3ch;
 	padding:.2ch.2ch.2ch 1.2ch;
 	z-index:1}
-main label,.day,.lva{font-family:'Reddit Mono',monospace}
-:is(main input:checked,#save:not(:checked))+label,a.pruefung{
+main>label,.day,.lva{font-family:'Reddit Mono',monospace}
+:is(main input:checked,#save:not(:checked))+label,.pruefung a{
 	--c:var(--r);
 	padding:.2ch 1.2ch.2ch.2ch}
-a.soon{background-image:linear-gradient(#0008,#0008)}
-label,label:before{
+.soon a{background-image:linear-gradient(#0008,#0008)}
+body>*>label,label:before{
 	border:1px solid #0000;
 	border-radius:9em;
 	transition:padding .2s, background .2s, box-shadow .2s}
 label,a,aside span{color:#ddd}
-label:before{
+body>*>label:before{
 	box-shadow:0 0 .5ch var(--c),inset 0 0 .4ch #0002;
 	content:attr(for);
 	padding:0 .5ch}
-label:before,section>a{background:var(--c)}
+label:before,section a{background:var(--c)}
 div{flex-basis:100%}
 div+div,section+div{flex:1 0 1px}
 section{
@@ -62,21 +62,21 @@ section{
 	-webkit-hyphens:auto;
 	hyphens:auto}
 a{text-decoration:auto}
-section>a{
+section a{
 	align-items:baseline;
 	background-clip:padding-box;
 	border:#0000 solid 0;
 	margin-top:.5ch;
 	border-radius:1em/50%;
 	box-shadow:inset 0 0 1em #0005}
-a[class]{
+article[class] a{
 	padding:.4ch 1ch;
 	transition:font.2s cubic-bezier(.8,0,0,1),visibility.2s,filter.2s,padding.2s}
-section>a:hover{box-shadow:none}
+section a:hover{box-shadow:none}
 a.done{
 	filter:brightness(.8)grayscale(1);
 	padding:.2ch 1ch}
-section>a>span{margin:0 .3ch}
+section a span{margin:0 .3ch}
 a[class] :is(.time,.lva):after{content:':'}
 .lva{flex:1}
 .name,.days{flex:99 1 max-content}
