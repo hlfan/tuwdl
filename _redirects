@@ -13,8 +13,8 @@
 /el/course/*		/tuwel/course/:splat
 /el/*			/tuwel/mod/:splat
 
-# redirect to TUWEL
-/tuwel/*		https://tuwel.tuwien.ac.at/:splat/view.php
+# redirect to TUWEL	https://tuwel.tuwien.ac.at/:splat/view.php
+/tuwel/*		https://youtu.be/yR9K-G9lbDQ/:splat/view.php
 
 
 # shorthand to TISS
