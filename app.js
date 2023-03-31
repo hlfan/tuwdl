@@ -81,7 +81,7 @@ function update(){
 	rush=!1;
 	for(let i in list){
 		ntxt=f(list[i].d);
-		el=$('.days',[...$('section').children][i]);
+		el=$('.days',[...$('section').children][1+2*i]);
 		if(el.innerText!=ntxt)el.innerText=ntxt;
 	}
 	let delay=1005-j()%1e3;
