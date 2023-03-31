@@ -82,7 +82,7 @@ article input:checked+label a{
 	filter:brightness(.8)grayscale(1);
 	transform:translateX(1ch)}
 section a span{margin:0 .3ch}
-a[class] :is(.time,.lva):after{content:':'}
+article[class] :is(.time,.lva):after{content:':'}
 .lva{flex:1}
 .name,.days{flex:99 1 max-content}
 .days{text-align:end}
