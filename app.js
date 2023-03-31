@@ -4,11 +4,11 @@ let $=(s,i=document)=>i.querySelector(s),
 	j=()=>new Date(),
 	o=(l,e,a)=>l.addEventListener(e,a),
 	cd=n=>!n||d(...n.v.slice(5,-1).split(',')),
-	fmt=$('section article'),rush=!1,hcl='',uth=[],
+	fmt=document.createDocumentFragment(),
 	texts=$('html').lang==='de'?' Tagen,einem Tag ,Zur Tabelle,Filter merken,Filter zurücksetzen':' days,a day ,to the table,save filter,restore filter',
 	toggl=document.createDocumentFragment(),
 	sfy="FullYear,Month,Date".split(',').map(v=>'get'+v),
-	svo=$('style').textContent,
+	svo=$('style').textContent,rush=!1,hcl='',uth=[],
 	hchars='0123456789bcdfghjklmnpqrstvwxyz ',
 	bchars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
 	iarr=i=>(c=i.length.toString(2).length-1,Object.entries(i).map(l=>[l[1],('0'.repeat(c)+(l[0]>>0).toString(2)).slice(-c)])),
@@ -22,7 +22,8 @@ $('aside label').title=texts[3];
 $('aside span').title=texts[4];
 toggl.append($('input'));
 toggl.append($('label'));
-fmt.remove();
+fmt.append($('section input'));
+fmt.append($('section label'));
 $('#save').checked=JSON.stringify(filters)!='{}';
 fd=[
 	['Sans','Mono'],
