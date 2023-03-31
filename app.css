@@ -31,7 +31,7 @@ input{
 	opacity:0;
 	position:absolute;
 	width:0}
-input:focus+label{outline:auto}
+input:focus+label,a:focus{outline:auto}
 label{background:#777}
 body>*>label{
 	background:#777;
