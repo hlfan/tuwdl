@@ -67,23 +67,23 @@ section a{
 	--o:clamp(1ch,3pc - 2vw,3em);
 	align-items:baseline;
 	margin-right:var(--o)}
-article{
-	display:grid;
+section label{
+	display:block;
 	margin-top:.5ch;
 	transition:font.2s cubic-bezier(.8,0,0,1),margin.2s,visibility.2s}
-article[class] a{
+section label[class] a{
 	padding:.4ch 1ch;
 	transition:transform.2s,filter.2s}
 section a:hover{box-shadow:none}
-article label,article a{
+section :is(label,a){
 	border-radius:1em/50%;
 	box-shadow:inset 0 0 1em #0004;
 	outline:#0000 solid 1px}
-article input:checked+label a{
+section input:checked+label a{
 	filter:brightness(.8)grayscale(1);
 	transform:translateX(var(--o))}
 section a span{margin:0 .3ch}
-article[class] :is(.time,.lva):after{content:':'}
+section [class] :is(.time,.lva):after{content:':'}
 .lva{margin-right:auto}
 .name,.days{flex:99 1 max-content}
 .days{
