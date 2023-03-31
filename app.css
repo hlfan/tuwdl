@@ -79,6 +79,7 @@ section :is(label,a){
 	outline:#0000 solid 1px}
 section input:checked+label{
 	filter:brightness(.7)grayscale(1);
+	font-size:.8em;
 	padding-inline:var(--o) 0}
 section a span{margin:0 .3ch}
 section [class] :is(.time,.lva):after{content:':'}
