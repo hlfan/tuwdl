@@ -114,9 +114,9 @@ function init(q){
 		a2o(f(l.d),'.days',dl);
 		$('input',dl).id=hash;
 		$('label',dl).htmlFor=hash;
-		dl.classList.add(l.c[6].v);
-		if(l.c[5].v=='TRUE')dl.classList.add('pruefung');
-		if(l.e>j())dl.classList.add('soon');
+		dl.lastChild.classList.add(l.c[6].v);
+		if(l.c[5].v=='TRUE')dl.lastChild.classList.add('pruefung');
+		if(l.e>j())dl.lastChild.classList.add('soon');
 		dl.title=((l.c[14]?.v||'')+' '+(l.c[7]?.v||'')).trim();
 		$('section').append(dl);
 	}
