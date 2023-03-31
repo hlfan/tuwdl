@@ -78,7 +78,7 @@ function saveFilter(){
 	if(!$('#save').checked)return;
 	$_('main',l=>l.id).forEach(l=>filters[l.id]=l.checked);
 	localStorage.filters=JSON.stringify(filters);
-	let done=$_('section',l=>l.checked).map(l=>l.id);
+	done=$_('section',l=>l.checked).map(l=>l.id);
 	localStorage.done=JSON.stringify(done);
 }
 function update(){
