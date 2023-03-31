@@ -82,6 +82,7 @@ section input:not([tabindex="-1"]):checked+label{
 	font-size:.8em;
 	padding-inline:var(--o) 0}
 [tabindex="-1"]+label{padding:0}
+[tabindex="-1"]+label .days{padding-right:var(--o)}
 section a span{margin:0 .3ch}
 section [class] :is(.time,.lva):after{content:':'}
 .lva{margin-right:auto}
