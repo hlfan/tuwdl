@@ -64,8 +64,9 @@ section{
 	hyphens:auto}
 a{text-decoration:auto}
 section a{
+	--o:clamp(1ch,3pc - 2vw,3em);
 	align-items:baseline;
-	margin-right:1ch}
+	margin-right:var(--o)}
 article{
 	display:grid;
 	margin-top:.5ch;
@@ -80,12 +81,14 @@ article label,article a{
 	outline:#0000 solid 1px}
 article input:checked+label a{
 	filter:brightness(.8)grayscale(1);
-	transform:translateX(1ch)}
+	transform:translateX(var(--o))}
 section a span{margin:0 .3ch}
 article[class] :is(.time,.lva):after{content:':'}
-.lva{flex:1}
+.lva{margin-right:auto}
 .name,.days{flex:99 1 max-content}
-.days{text-align:end}
+.days{
+	order:1;
+	text-align:end}
 aside{
 	align-items:flex-end;
 	flex-direction:row-reverse;
@@ -147,9 +150,10 @@ aside span:before{content:attr(title)}
 	main{padding:1vh 4vw}
 	label,a,aside span{
 		color:unset}
+	.name,.days{flex:auto}
 	a[href]:after{
 		content:'('attr(href)')';
-		flex-basis:100%;
+		flex-grow:99;
 		line-break:anywhere;
 		margin-left:.5ch}
 	aside span{display:none}}
