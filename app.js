@@ -1,4 +1,5 @@
 let $=(s,i=document)=>i.querySelector(s),
+	$_=(s,f=l=>l)=>[...$(s).children].filter(f),
 	a2o=(a,s,r)=>$(s,r).append(a),
 	d=(...l)=>new Date(...l),
 	j=()=>new Date(),
@@ -14,7 +15,8 @@ let $=(s,i=document)=>i.querySelector(s),
 	iarr=i=>(c=i.length.toString(2).length-1,Object.entries(i).map(l=>[l[1],('0'.repeat(c)+(l[0]>>0).toString(2)).slice(-c)])),
 	hobj=Object.fromEntries(iarr(hchars)),
 	bobj=Object.fromEntries(iarr(bchars).map(l=>l.reverse())),
-	filters=JSON.parse(localStorage.filters||'{}');
+	filters=JSON.parse(localStorage.filters||'{}'),
+	done=JSON.parse(localStorage.done||'[]');
 texts=texts.split(',');
 $('aside a').href=$('script[src*="gviz"]').src.split('gviz')[0]+'edit';
 $('aside a').textContent=texts[2];
@@ -43,7 +45,7 @@ fd[1]=fd[1].map((font)=>
 	};}`
 ).join('');
 o($('#save'),'change',saveFilter);
-o($('aside span'),'click',()=>{delete localStorage.filters});
+o($('aside span'),'click',()=>{delete localStorage.filters;delete localStorage.done});
 s=navigator.serviceWorker;if(s)s.register('sw.js');
 
 if(JSON.stringify(resp)=='{}'){
@@ -74,14 +76,16 @@ function hashDL(row){
 }
 function saveFilter(){
 	if(!$('#save').checked)return;
-	inputs.forEach(l=>filters[l.id]=l.checked);
-	localStorage.filters=JSON.stringify(filters)
+	$_('main',l=>l.id).forEach(l=>filters[l.id]=l.checked);
+	localStorage.filters=JSON.stringify(filters);
+	let done=$_('section',l=>l.checked).map(l=>l.id);
+	localStorage.done=JSON.stringify(done);
 }
 function update(){
 	rush=!1;
 	for(let i in list){
 		ntxt=f(list[i].d);
-		el=$('.days',[...$('section').children][1+2*i]);
+		el=$('.days',$_('section')[1+2*i]);
 		if(el.innerText!=ntxt)el.innerText=ntxt;
 	}
 	let delay=1005-j()%1e3;
@@ -112,15 +116,16 @@ function init(q){
 		a2o(l.c[2].v,'.name',dl);
 		$('a',dl).href=l.c[12].v.replace(/(?:https?:)?\/\/rebrand\.ly/,'go');
 		a2o(f(l.d),'.days',dl);
-		$('input',dl).id=hash;
-		$('label',dl).htmlFor=hash;
 		dl.lastChild.classList.add(l.c[6].v);
 		if(l.c[5].v=='TRUE')dl.lastChild.classList.add('pruefung');
 		if(l.e>j())dl.lastChild.classList.add('soon');
+		dl.firstChild.id=hash;
+		dl.lastChild.htmlFor=hash;
 		dl.lastChild.title=((l.c[14]?.v||'')+' '+(l.c[7]?.v||'')).trim();
+		o(dl.firstChild,'change',saveFilter);
 		$('section').append(dl);
 	}
-	[...$('main').children].filter(l=>l.hasAttributes()).forEach(l=>{l.remove()});
+	$_('main',l=>l.hasAttributes()).forEach(l=>{l.remove()});
 	for(let l of lvas){
 		lb=toggl.cloneNode(!0);
 		lb.firstChild.id=l;
@@ -131,8 +136,9 @@ function init(q){
 		$('main').prepend(lb);
 	}
 	$('style').textContent=hcl+svo+fd[1];
-	inputs=[...$('main').children].filter(l=>l.id);
-	if(JSON.stringify(filters)!='{}'){
-		inputs.forEach(l=>(filters[l.id]+1)?l.checked=filters[l.id]:l)}
+	if(JSON.stringify(filters)!='{}')
+		$_('main',l=>l.id).forEach(l=>(filters[l.id]+1)?l.checked=filters[l.id]:l);
+	if(JSON.stringify(done)!='[]')
+		$_('section',l=>l.id).forEach(l=>l.checked=done.includes(l.id));
 	update();
 }
