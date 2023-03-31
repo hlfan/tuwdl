@@ -121,7 +121,7 @@ function init(q){
 		if(l.e>j())dl.lastChild.classList.add('soon');
 		dl.firstChild.id=hash;
 		dl.lastChild.htmlFor=hash;
-		lb.firstChild.ariaLabel=hash;
+		dl.firstChild.ariaLabel=hash;
 		dl.lastChild.title=((l.c[14]?.v||'')+' '+(l.c[7]?.v||'')).trim();
 		o(dl.firstChild,'change',saveFilter);
 		$('section').append(dl);
