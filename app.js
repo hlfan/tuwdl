@@ -119,7 +119,7 @@ function init(q){
 		dl.firstChild.classList.add(l.c[6].v);
 		dl.lastChild.classList.add(l.c[6].v);
 		if(l.c[5].v=='TRUE')dl.lastChild.classList.add('pruefung');
-		if(l.e>j())dl.lastChild.classList.add('soon');
+		if(l.e>j())dl.firstChild.tabIndex=-1
 		dl.firstChild.id=hash;
 		dl.lastChild.htmlFor=hash;
 		dl.firstChild.ariaLabel=hash;
