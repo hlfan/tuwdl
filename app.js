@@ -86,7 +86,7 @@ function update(){
 	for(let i in list){
 		ntxt=f(list[i].d);
 		el=$('.days',$_('section')[1+2*i]);
-		if(el.innerText!=ntxt)el.innerText=ntxt;
+		if(el.textContent!=ntxt)el.textContent=ntxt;
 	}
 	let delay=1005-j()%1e3;
 	if(!rush){
