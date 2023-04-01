@@ -142,5 +142,5 @@ function init(q){
 		$_('main',l=>l.id).forEach(l=>(filters[l.id]+1)?l.checked=filters[l.id]:l);
 	if(JSON.stringify(done)!='[]')
 		$_('section',l=>l.id).forEach(l=>l.checked=done.includes(l.id));
-	update();
+	requestAnimationFrame(update);
 }
