@@ -21,7 +21,7 @@
 /s/*			/iss/courseRegistration/:splat
 /x/*			/iss/examDateList/:splat
 /g/*			/iss/groupList/:splat
-/d/*			/iss/educationDetails/:splat		200
+/d/*			/iss/educationDetails/:splat
 
 # parse path for TISS
 /iss/:path/:lva/:sem	/iss/:path?courseNr=:lva&semester=:sem
