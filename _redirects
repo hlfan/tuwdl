@@ -1,34 +1,34 @@
 # uses shorthands  a c d g q r s x
 # shorthand to tuwEL
-/q/*			/el/quiz/:splat				200
-/a/*			/el/assign/:splat			200
-/r/*			/el/resource/:splat			200
-/c/*			/el/course/:splat			200
+/q/*			/el/quiz/:splat
+/a/*			/el/assign/:splat
+/r/*			/el/resource/:splat
+/c/*			/el/course/:splat
 
 # parse path for tuwEL
-/el/:path/:lva/:sem	/el/:path?idnumber=:lva-:sem		200
-/el/:path/:id		/el/:path?id=:id			200
+/el/:path/:lva/:sem	/el/:path?idnumber=:lva-:sem
+/el/:path/:id		/el/:path?id=:id
 
 # specify correct subpath
-/el/course/*		/tuwel/course/:splat			200
-/el/*			/tuwel/mod/:splat			200
+/el/course/*		/tuwel/course/:splat
+/el/*			/tuwel/mod/:splat
 
 # redirect to TUWEL
 /tuwel/*		https://tuwel.tuwien.ac.at/:splat/view.php
 
 
 # shorthand to TISS
-/s/*			/iss/courseRegistration/:splat		200
-/x/*			/iss/examDateList/:splat		200
-/g/*			/iss/groupList/:splat			200
-/d/*			/iss/educationDetails/:splat		200
+/s/*			/iss/courseRegistration/:splat
+/x/*			/iss/examDateList/:splat
+/g/*			/iss/groupList/:splat
+/d/*			/iss/educationDetails/:splat
 
 # parse path for TISS
-/iss/:path/:lva/:sem	/iss/:path?courseNr=:lva&semester=:sem	200
+/iss/:path/:lva/:sem	/iss/:path?courseNr=:lva&semester=:sem
 
 # specify correct subpath
-/iss/educationDetails	/tiss/course/educationDetails		200
-/iss/:path		/tiss/education/course/:path		200
+/iss/educationDetails	/tiss/course/educationDetails
+/iss/:path		/tiss/education/course/:path
 
 # redirect to TISS
 /tiss/*			https://tiss.tuwien.ac.at/:splat.xhtml
