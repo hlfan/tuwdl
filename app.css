@@ -1,6 +1,7 @@
 html{
 	color-scheme:dark;
-	overflow:overlay;
+	overflow-x:clip;
+	overflow-y:overlay;
 	scrollbar-color:#888 #0000;
 	scrollbar-gutter:stable;
 	width:100vw}
