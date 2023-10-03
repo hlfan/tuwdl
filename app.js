@@ -123,7 +123,7 @@ function init(q){
 		dl.firstChild.id=hash;
 		dl.lastChild.htmlFor=hash;
 		dl.firstChild.ariaLabel=hash;
-		dl.lastChild.title=((l.c[14]?.v||'')+' '+(l.c[7]?.v||'')).trim();
+		$('a',dl).title=((l.c[14]?.v||'')+' '+(l.c[7]?.v||'')).trim();
 		o(dl.firstChild,'change',saveFilter);
 		$('section').append(dl);
 	}
@@ -133,6 +133,7 @@ function init(q){
 		lb.firstChild.id=l;
 		lb.lastChild.htmlFor=l;
 		lb.firstChild.ariaLabel=l;
+		lb.lastChild.title=list.filter(d=>d.c[6].v==l)[0].c[7].v;
 		hcl+=`#${l}:checked~section .${l},`;
 		o(lb.firstChild,'change',saveFilter);
 		$('main').prepend(lb);
@@ -142,6 +143,6 @@ function init(q){
 		$$('main',l=>l.id).forEach(l=>(filters[l.id]+1)?l.checked=filters[l.id]:l);
 	if(JSON.stringify(done)!='[]')
 		$$('section',l=>l.id).forEach(l=>l.checked=done.includes(l.id));
-	$(location.hash).focus();
+	location.hash&&$(location.hash).focus();
 	requestAnimationFrame(update);
 }
