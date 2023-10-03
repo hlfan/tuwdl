@@ -1,5 +1,5 @@
 let $=(s,i=document)=>i.querySelector(s),
-	$_=(s,f=l=>l)=>[...$(s).children].filter(f),
+	$$=(s,f=l=>l)=>[...$(s).children].filter(f),
 	a2o=(a,s,r)=>$(s,r).append(a),
 	d=(...l)=>new Date(...l),
 	j=()=>new Date(),
@@ -76,16 +76,16 @@ function hashDL(row){
 }
 function saveFilter(){
 	if(!$('#save').checked)return;
-	$_('main',l=>l.id).forEach(l=>filters[l.id]=l.checked);
+	$$('main',l=>l.id).forEach(l=>filters[l.id]=l.checked);
 	localStorage.filters=JSON.stringify(filters);
-	done=$_('section',l=>l.checked).map(l=>l.id);
+	done=$$('section',l=>l.checked).map(l=>l.id);
 	localStorage.done=JSON.stringify(done);
 }
 function update(){
 	rush=!1;
 	for(let i in list){
 		ntxt=f(list[i].d);
-		el=$('.days',$_('section')[1+2*i]);
+		el=$('.days',$$('section')[1+2*i]);
 		if(el.textContent!=ntxt)el.textContent=ntxt;
 	}
 	let delay=1005-j()%1e3;
@@ -127,7 +127,7 @@ function init(q){
 		o(dl.firstChild,'change',saveFilter);
 		$('section').append(dl);
 	}
-	$_('main',l=>l.hasAttributes()).forEach(l=>{l.remove()});
+	$$('main',l=>l.hasAttributes()).forEach(l=>{l.remove()});
 	for(let l of lvas){
 		lb=toggl.cloneNode(!0);
 		lb.firstChild.id=l;
@@ -139,9 +139,9 @@ function init(q){
 	}
 	$('style').textContent=hcl+svo+fd[1];
 	if(JSON.stringify(filters)!='{}')
-		$_('main',l=>l.id).forEach(l=>(filters[l.id]+1)?l.checked=filters[l.id]:l);
+		$$('main',l=>l.id).forEach(l=>(filters[l.id]+1)?l.checked=filters[l.id]:l);
 	if(JSON.stringify(done)!='[]')
-		$_('section',l=>l.id).forEach(l=>l.checked=done.includes(l.id));
+		$$('section',l=>l.id).forEach(l=>l.checked=done.includes(l.id));
 	$(location.hash).focus();
 	requestAnimationFrame(update);
 }
