@@ -25,6 +25,6 @@ exports.handler = async function(event, context) {
 	if(message.content===content){console.log('no change necessary');return{statusCode:204}};
 	line=({body:JSON.stringify({content}),method:"PATCH"});
 	line.headers=({"content-type":"application/json"});
-	console.log(await(await fetch(r,line)).json());
+	console.log(await(await fetch(process.env.TUWDL_DISCORD_WEBHOOK_URL,line)).json());
     return{statusCode:204}
 }
