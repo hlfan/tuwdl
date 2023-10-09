@@ -24,7 +24,7 @@ exports.handler = async function(event, context) {
 	if(list.includes('#NAME'))return{statusCode:503};
 	r=process.env.TUWDL_DISCORD_WEBHOOK_URL;
 	list=({content:list.replace(/@/g, '@ ').replace(/  /g, ' ').trim()});
-	line=(await(await fetch(TUWDL_DISCORD_WEBHOOK_URL)).json()).content;
+	line=(await(await fetch(process.env.TUWDL_DISCORD_WEBHOOK_URL)).json()).content;
 	if(list.content===line)return{statusCode:204};
 	line=({body:JSON.stringify(list),method:"PATCH"});
 	line.headers=({"content-type":"application/json"});
