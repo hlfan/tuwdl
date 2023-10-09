@@ -4,4 +4,4 @@
     Content-Security-Policy = "default-src 'self' www.redditstatic.com storage.googleapis.com docs.google.com; script-src 'self' 'sha256-RMpWHpJm2hEykLM3IC4SYBnBLT7k43enVQ2jSfxQGlY=' docs.google.com; style-src 'unsafe-inline' 'self'; base-uri 'self';"
 
 [functions."dl-webhook"]
-schedule = "*/5 * * * *"
+schedule = "* * * * *"
