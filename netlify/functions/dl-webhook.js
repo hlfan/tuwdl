@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 exports.handler = async function(event, context) {
     console.log("Received event:", event);
 	r=process.env.TUWDL_DISCORD_WEBHOOK_URL;
