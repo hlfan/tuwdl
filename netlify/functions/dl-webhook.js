@@ -12,7 +12,7 @@ exports.handler = async function(event, context) {
 		if (time < 0) continue;
 		time = (time < 6048e5) ? line : "";
 		line = '\n' + row.c[13]?.v.replace(/{d}/g, row.c[0].f.replace(/\. /g, ' '));
-		dorn = toLocalDate(row.c[1]) > new Date;
+		dorn = toLocalDate(row.c[1]) < new Date;
 		line = line.replace(/\((\w)\b/g, `(${process.env.URL}/$1`);
 		if(dorn) line = line.replace(/__/g, '___');
 		if (row.c[5]?.v != 'TRUE') line = line.replace(/__/g, '');
