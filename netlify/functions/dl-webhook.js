@@ -15,7 +15,7 @@ exports.handler = async function(event, context) {
 		time = (time < 6048e5) ? line : "";
 		line = '\n' + cells[13]?.v.replace(/{d}/g, cells[0].f.replace(/\. /g, ' '));
 		row = cells[1]?.v && eval("new " + cells[1]?.v) > new Date;
-		line = line.replace(/\((\w)\b/g, '(https://tuwdl.netlify.app/$1');
+		line = line.replace(/\((\w)\b/g, `(${process.env.URL}/$1`);
 		if(!row) line = line.replace(/__/g, '___');
 		if (cells[5]?.v != 'TRUE') line = line.replace(/__/g, '');
 		row = list + line + time;
@@ -27,7 +27,6 @@ exports.handler = async function(event, context) {
 	line=({body:JSON.stringify(list),method:"PATCH"});
 	line.headers=({"content-type":"application/json"});
 	console.log("Received event body:", event.body);
-	console.log("for site: " + process.env.URL);
 	console.log(await(await fetch(r,line)).json());
     return{statusCode:204}
 }
