@@ -101,7 +101,7 @@ function update(){
 }
 function init(q){
 	list=q.table.rows;
-	list.forEach(l=>(l.d=cd(l.c[0]),l.e=cd(l.c[1])));
+	list.forEach(l=>(l.c[6].v=l.c[6].v.trim(),l.d=cd(l.c[0]),l.e=cd(l.c[1])));
 	list=list.filter(l=>Math.max(l.d,l.e)>j());
 	lvas=[...new Set(list.map(l=>l.c[6].v))].sort().reverse();
 	$('section').innerHTML="";
